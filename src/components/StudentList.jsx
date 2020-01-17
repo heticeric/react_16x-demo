@@ -1,13 +1,13 @@
 import React from "react";
 import Student from "./Student";
+import StudentContext from "./StudentsContext";
 
-export default ( { students } ) => 
+export default () => 
 {
-    // Create an indirection from the props and its internal state
-    // ! Note ! Using the props as default value is an anti-pattern
-    // It wiil prevent the data to ever change… (try it for yourself)
-    // ! DONTDOTHIS ! const [ studentsList, setStudents ] = React.useState( students );
-    const [ studentsList, setStudents ] = React.useState( [] );
+    // Internal state
+     const [ studentsList, setStudents ] = React.useState( [] );
+     // Context provider
+     const students = React.useContext( StudentContext );
 
     // Use a side effect on the prop's data
     React.useEffect
@@ -40,7 +40,6 @@ export default ( { students } ) =>
                     ? Object.assign( s, { selected : true } )
                     : Object.assign( s, { selected : false } )
             );
-        console.log( studentsSettings );
         setStudents( studentsSettings );
     }
 

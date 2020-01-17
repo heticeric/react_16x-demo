@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import StudentList from "./components/StudentList";
+import StudentsContext from "./components/StudentsContext";
 
 const students = 
 [
@@ -33,7 +34,10 @@ const students =
 function App() {
   return (
     <div className="App">
-      <StudentList students={ students } />
+      <StudentsContext.Provider
+        value={ students } >
+        <StudentList students={ students } />
+      </StudentsContext.Provider>
     </div>
   );
 }
