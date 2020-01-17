@@ -1,26 +1,19 @@
 import React from "react";
 
-export default class extends React.Component
+export default ( { settings } ) =>
 {
-    state =
-    {
-        edited :false
-        ,name : this.props.settings.name
-    }
+    // Internal states
+    const [ edited, setEdited ] = React.useState( false );
+    const [ name, setName ] = React.useState( settings.name );
 
     /**
      * Handle the checkbox change event
-     * ! WARNING ! Don't use method and bind()
-     * Use arrow functions that binds the this context automatically
      * 
      * @param e Event object
      */
-    checkboxHasChanged = e =>
+    const checkboxHasChanged = e =>
     {
-        this.setState
-        (
-            { edited : e.target.checked }
-        );         
+        setEdited( e.target.checked );         
     }
 
     /**
@@ -28,32 +21,27 @@ export default class extends React.Component
      * 
      * @param e Event object
      */
-    inputHasChanged = e =>
+    const inputHasChanged = e =>
     {
-        this.setState
-        (
-            { name : e.target.value }
-        );
+        setName( e.target.value );
     }
 
-    render()
-    {
-        return(
-            <li>
-                <input
-                    type="checkbox"
-                    onChange={ this.checkboxHasChanged }
-                />
-                {
-                    this.state.edited
-                    ? <input 
-                            type="text" 
-                            value={ this.state.name }
-                            onChange={ this.inputHasChanged }
-                        />
-                    : this.state.name
-                }
-            </li>
-        )
-    }
+
+    return(
+        <li>
+            <input
+                type="checkbox"
+                onChange={ checkboxHasChanged }
+            />
+            {
+                edited
+                ? <input 
+                        type="text" 
+                        value={ name }
+                        onChange={ inputHasChanged }
+                    />
+                : name
+            }
+        </li>
+    );
 }
