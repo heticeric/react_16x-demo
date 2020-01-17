@@ -29,7 +29,11 @@ export default class extends React.Component
                     type="checkbox"
                     onChange={ this.checkboxHasChanged }
                 />
-                { settings.name }
+                {
+                    this.state.edited
+                    ? <input type="text" value={ settings.name }/>
+                    : settings.name
+                }
             </li>
         )
     }
