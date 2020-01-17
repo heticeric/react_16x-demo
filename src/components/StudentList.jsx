@@ -26,9 +26,11 @@ export default ( { students } ) =>
     /**
      * Retrieve the clicked student from the child components
      * Lift the state up to manage selection from the items
+     * The method is auto-curried
+     * @see https://www.sitepoint.com/currying-in-functional-javascript/
      * @param {Number} id ID of the student
      */
-    const highlightItem = id =>
+    const highlightItem = id => () =>
     {
         const studentsSettings 
             = studentsList.map

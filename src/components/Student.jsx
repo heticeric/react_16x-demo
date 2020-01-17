@@ -28,7 +28,7 @@ export default ( { settings, selected, highlight } ) =>
 
     return(
         <li
-            onClick={ () => highlight( settings.id ) }
+            onClick={ highlight( settings.id ) }
             style=
             {
                 selected
