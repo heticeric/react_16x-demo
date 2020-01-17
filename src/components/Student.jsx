@@ -26,7 +26,6 @@ export default ( { settings } ) =>
         setName( e.target.value );
     }
 
-
     return(
         <li>
             <input
