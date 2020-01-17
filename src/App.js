@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Student from "./components/Student";
 
 const students = 
 [
@@ -36,7 +37,7 @@ function App() {
         {
           students.map
           (
-            s => <li key={ s.id }>{ s.name }</li>
+            s => <Student key={ s.id } settings={ s } />
           )
         }
       </ul>
