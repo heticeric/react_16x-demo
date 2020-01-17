@@ -1,10 +1,14 @@
 import React from "react";
+import StudentContext from "./StudentsContext";
 
-export default ( { settings, selected, highlight } ) =>
+export default ( { settings, selected } ) =>
 {
     // Internal states
     const [ edited, setEdited ] = React.useState( false );
     const [ name, setName ] = React.useState( settings.name );
+    // Context provider
+    const highlight = React.useContext( StudentContext ).highlightItem;
+
 
     /**
      * Handle the checkbox change event

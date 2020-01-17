@@ -31,12 +31,42 @@ const students =
   }
 ];
 
-function App() {
+students.map
+(
+  s => Object.assign( s, { selected : false } )     
+);
+
+function App()
+{
+    // Internal state
+    const [ studentsList, setStudents ] = React.useState( students );
+
+    /**
+     * Retrieve the clicked student from the child components
+     * Lift the state up to manage selection from the items
+     * The method is auto-curried
+     * @see https://www.sitepoint.com/currying-in-functional-javascript/
+     * @param {Number} id ID of the student
+     */
+    const highlightItem = id => () =>
+    {      
+      const studentsSettings 
+          = studentsList.map
+          (
+              s => 
+                  id === s.id 
+                  ? Object.assign( s, { selected : true } )
+                  : Object.assign( s, { selected : false } )
+          );
+      console.log( studentsSettings );    
+      setStudents( studentsSettings );
+    }
+
   return (
     <div className="App">
       <StudentsContext.Provider
-        value={ students } >
-        <StudentList students={ students } />
+        value={ { studentsList, highlightItem } } >
+        <StudentList/>
       </StudentsContext.Provider>
     </div>
   );
