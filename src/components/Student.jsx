@@ -5,12 +5,15 @@ export default class extends React.Component
     state =
     {
         edited :false
+        ,name : this.props.settings.name
     }
 
     /**
      * Handle the checkbox change event
      * ! WARNING ! Don't use method and bind()
      * Use arrow functions that binds the this context automatically
+     * 
+     * @param e Event object
      */
     checkboxHasChanged = e =>
     {
@@ -20,9 +23,21 @@ export default class extends React.Component
         );         
     }
 
+    /**
+     * Handle the input changing value
+     * 
+     * @param e Event object
+     */
+    inputHasChanged = e =>
+    {
+        this.setState
+        (
+            { name : e.target.value }
+        );
+    }
+
     render()
     {
-        const { settings } = this.props;
         return(
             <li>
                 <input
@@ -31,8 +46,12 @@ export default class extends React.Component
                 />
                 {
                     this.state.edited
-                    ? <input type="text" value={ settings.name }/>
-                    : settings.name
+                    ? <input 
+                            type="text" 
+                            value={ this.state.name }
+                            onChange={ this.inputHasChanged }
+                        />
+                    : this.state.name
                 }
             </li>
         )
