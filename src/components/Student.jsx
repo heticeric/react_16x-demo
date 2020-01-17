@@ -1,11 +1,10 @@
 import React from "react";
 
-export default ( { settings } ) =>
+export default ( { settings, selected, highlight } ) =>
 {
     // Internal states
     const [ edited, setEdited ] = React.useState( false );
     const [ name, setName ] = React.useState( settings.name );
-    const [ selected, setSelected ] = React.useState( false );
 
     /**
      * Handle the checkbox change event
@@ -27,14 +26,9 @@ export default ( { settings } ) =>
         setName( e.target.value );
     }
 
-    const highlight = e =>
-    {
-        setSelected( ! selected )
-    }
-
     return(
         <li
-            onClick={ highlight }
+            onClick={ () => highlight( settings.id ) }
             style=
             {
                 selected
