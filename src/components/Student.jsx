@@ -7,6 +7,19 @@ export default class extends React.Component
         edited :false
     }
 
+    /**
+     * Handle the checkbox change event
+     * ! WARNING ! Don't use method and bind()
+     * Use arrow functions that binds the this context automatically
+     */
+    checkboxHasChanged = e =>
+    {
+        this.setState
+        (
+            { edited : e.target.checked }
+        );         
+    }
+
     render()
     {
         const { settings } = this.props;
@@ -14,10 +27,7 @@ export default class extends React.Component
             <li>
                 <input
                     type="checkbox"
-                    onChange=
-                    { 
-                        e => this.setState( { edited : e.target.checked } ) 
-                    }
+                    onChange={ this.checkboxHasChanged }
                 />
                 { settings.name }
             </li>
